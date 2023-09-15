@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import TodoList from './components/TodoList';
-import AddTask from './components/AddTask';
 import { getAllTasks } from '@/page/api';
+import AddTaskBtn from './components/AddTaskBtn';
 
 export default async function Home() {
   const tasks = await getAllTasks();
@@ -13,7 +13,7 @@ export default async function Home() {
       </h1>
       <div className="w-full max-w-xl mt-5">
         <div className="w-full px-8 py-6 bg-white shadow-md rounded-lg">
-          <AddTask />
+          <AddTaskBtn />
           <TodoList tasks={tasks} />
         </div>
       </div>
