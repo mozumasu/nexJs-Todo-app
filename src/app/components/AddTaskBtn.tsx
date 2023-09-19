@@ -1,6 +1,7 @@
 'use client';
 import { AddTask } from '@/page/api';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTaskBtn = () => {
   const [TaskTitle, setTaskTitle] = useState('');
@@ -8,7 +9,7 @@ const AddTaskBtn = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    await AddTask({ id: '4', text: TaskTitle });
+    await AddTask({ id: uuidv4(), text: TaskTitle });
 
     setTaskTitle('');
   };
