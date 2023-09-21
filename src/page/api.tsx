@@ -22,7 +22,7 @@ export const AddTask = async (task: TaskType): Promise<TaskType[]> => {
 };
 
 //タスク編集API
-export const EditTask = async (
+export const editTask = async (
   id: string,
   newText: string
 ): Promise<TaskType[]> => {
@@ -34,4 +34,14 @@ export const EditTask = async (
   const updatedTask = await res.json();
 
   return updatedTask;
+};
+//タスク削除API
+export const deleteTask = async (id: string): Promise<TaskType[]> => {
+  const res = await fetch(`http://localhost:3001/tasks/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const deleteTask = await res.json();
+
+  return deleteTask;
 };

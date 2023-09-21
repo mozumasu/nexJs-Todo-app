@@ -1,5 +1,5 @@
 'use client';
-import { EditTask } from '@/page/api';
+import { deleteTask, editTask } from '@/page/api';
 import { TaskType } from '@/page/types';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -22,8 +22,11 @@ const Task = ({ task }: TodoProps) => {
     setIsEditing(true);
   };
   const handleSave = async () => {
-    await EditTask(task.id, editedTaskTitle);
+    await editTask(task.id, editedTaskTitle);
     setIsEditing(false);
+  };
+  const handleDelete = async () => {
+    await deleteTask(task.id);
   };
 
   return (
@@ -55,7 +58,9 @@ const Task = ({ task }: TodoProps) => {
           </button>
         )}
 
-        <button className="text-red-300 mr-1">delete</button>
+        <button className="text-red-300 mr-1" onClick={handleDelete}>
+          delete
+        </button>
       </div>
     </li>
   );
