@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { TaskType } from './types';
 
 //タスク一覧取得API
@@ -18,4 +19,19 @@ export const AddTask = async (task: TaskType): Promise<TaskType[]> => {
   const newTask = res.json();
 
   return newTask;
+};
+
+//タスク編集API
+export const EditTask = async (
+  id: string,
+  newText: string
+): Promise<TaskType[]> => {
+  const res = await fetch(`http://localhost:3001/tasks/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: newText }),
+  });
+  const updatedTask = await res.json();
+
+  return updatedTask;
 };
